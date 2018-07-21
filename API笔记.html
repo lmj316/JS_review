@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+    </style>
+</head>
+<body>
+    <script>
+        
+        inner      // 内部的
+        offset     // 偏移量  距离最近该元素最近定位父元素，没有的话就body
+        offsetLeft/offsetTop     // 表示dom元素距离左边/上边的距离
+        create     // 创造
+        location   // 位置，地点
+        confirm    // 确认
+        assign     // 委派
+        countdown  // 倒数计秒
+        item       // 条款，项目
+    setTimeout(function () {})   // 定时炸弹   隔一段时间执行，并且只会执行一次
+    setInterval(function () {})  // 闹钟       隔一段时间执行，并且会重复执行
+        interval   // 间隔，间距
+        client     // 客户，顾客，委托人
+        e.clientX/e.clientY   // 鼠标在可视区域中的位置
+        e.pageX/e.pageY       // 鼠标在页面中的位置 有兼容性问题  从IE9以后才支持
+        pageY = clientY + 页面滚动出去的距离
+        step     // 步
+        timer    // 定时器
+        target   // 目标
+    null         // 无效的，等于零
+    propagation  // 传播，繁殖，增殖
+    停止事件传播取消冒泡:
+    // 1,标准的DOM方法                         e.stopPropagation();
+    // 2,取消冒泡  非标准的方式 老版本的IE支持   e.cancelBubble = true;
+    e : event
+        取消默认行为执行         // return false;
+        DOM标准方法             // e.preventDefault();
+    //  IE的老版本，非标准方式   // e.returnValue = false;
+
+    onmouseover     // 当鼠标移入
+    onmouseout      // 当鼠标移出
+    onmouseup       // 鼠标按键放开时触发
+    onmousedown     // 鼠标按键按下触发
+    onmousemove     // 鼠标移动触发
+    onkeyup         // 键盘按键按下触发
+    onkeydown       // 键盘按键抬起触发
+    remove          // 移动，调动
+    attach          // 附加，伴随
+    event           // 事件
+    scroll          // 卷轴，成卷形
+    // default         拖欠，违约，缺席，不履行
+    add             // 增加，添加
+    prevent         // 预防，阻止
+    repalce         // 替换
+    hide            // 隐藏
+    node            // 节点
+    current         // 现在的；流通的，通用的；最近的；草写的
+    attribute       // 属性；特质  
+    carate          // 创建
+    append          // 附加，贴上，盖章
+    collapse        // 坍塌，瓦解，暴跌
+
+    父子结构:
+    parentNode    // 父节点  只有一个 
+    childNodes    // 子节点  有很多个
+    children      // 子元素
+    // <a href="javascript:void(0)"></a>  让a链接不跳转
+
+    nextSibling              // 下一个兄弟节点
+    nextElementSibling       // 下一个兄弟元素
+    
+    previousSibling          // 上一个兄弟节点
+    previousElementSibling   // 上一个兄弟元素
+
+    动态创建元素
+    document.write()
+    element.innerHTML
+    document.createElement()
+
+    // 在内存中创建一个DOM对象
+    var p = document.createElement('p');
+    // 设置对象的属性
+    p.innerText = 'hello';
+    p.style.color = 'red';
+
+    // 把p元素，放到DOM树上
+    var box = document.getElementById('box');
+    box.appendChild(p);
+
+    // 注册事件的方式
+    btn.addEventListener('click', function () {
+        
+    })
+    btn.attachEvent('onclick', function() {
+
+    })
+    // 移除事件的方式
+    btn.onclick = function () {
+        alert('hello world');
+        btn.onclick = null;
+    }
+    btn.addEventListener('click', function () {
+        alert('hello world');
+        btn.removeEventListener('click')
+    })
+    function btnClick () {
+        alert('hello wrold');
+        btn.removeEventListener('click', btnClick);
+    }
+    // 事件委托，给父元素注册事件即可
+    // 布尔类型 true false
+    // 事件的阶段：1，捕获阶段 2，目标阶段 3，冒泡阶段
+    // 处理兼容性问题：
+    var target = e.target || e.srcElement;
+    e = e || window.event;
+    // e.target 获取真正触发事件的对象
+
+    // 获取页面滚动出去的距离
+    function getScroll() {
+        var scrollLeft = document.body.srcollLeft || document.documentElement.scrollLeft;
+        var scrollTop = document.body.scrollTop || document.documentElement.srcollTop;
+        return {
+            scrollLeft: scrollLeft,
+            scrollTop: scrollTop
+        }
+    }
+    // 获取鼠标在页面的位置
+    function getPage(e) {
+        var pageX = e.pageX || e.clientX + getScroll().scrollLeft;
+        var pageY = e.pageY || e.clientY + getScroll().scrollTop;
+        return {
+            pageX: pageX,
+            pageY: pageY
+        }
+    }
+    // 获取鼠标在盒子上的位置
+    var box = document.getElementById('box');
+           box.onclick = function (e) {
+               e = e || window.event;
+               var x = getPage(e).pageX - this.offsetLeft;
+               var y = getPage(e).pageY - this.offsetTop;
+               console.log(x);
+               console.log(y);
+           }
+           
+         innerHTML             // 原封不动的获取到内容
+         innerText             // 去掉了空白部分,过滤标签
+         box.innerHTML = '';   // 清空内容
+         
+         转义符
+        // ""  &quot;
+        // ''  &apos;
+        // &   &amp;
+        // <   &lt;
+        // >   &gt;
+        // 空格 &nbsp;
+
+         动态创建元素
+         document.write()
+         element.innerHTML
+         var p = document.createElement('p');推荐写法
+
+        //  function my$(id) {
+        //     return document.getElementById(id);
+        //  }
+
+         事件监听注册事件
+         var btn = document.getElementById('btn');
+         btn.addEventListener('click', function() {
+             alert('aaa');
+         })
+         btn.addEventListener('click', function() {
+             alert('bbb');
+         }) 
+
+    // box.id
+    // console.dir(box);
+
+    // // innerHTML  innerText 
+    // // 获取开始标签和结束标签之间的内容
+    
+    // // innerHTML  获取内容的时候，如果内容中有标签，会把标签页获取到
+    // // 原封不动把内容获取到
+    // console.log(box.innerHTML);
+    // // innerText  获取内容的时候，如果内容中有标签，会把标签过滤掉
+    // // innerText 会把前后的换行和空白都去掉
+    // console.log(box.innerText);
+
+    // 设置标签之间的内容
+    // box.innerHTML = '';  // 清空内容
+    
+    // 通过innerHTML 设置内容，如果内容中带标签，会以HTML的方式来解析
+    // box.innerHTML = '<b>黑马</b>程序猿'; 
+     
+    // 通过innerText 设置内容，如果内容中带标签，在网页上会把标签显示出来
+    // innerText  最早出现在IE浏览器中
+    
+    // 浏览器兼容问题
+    
+    // 老版本的firefox浏览器不支持innerText
+    // 2016的时候 已经把innerText 在DOM中规定为正式的标准属性
+    
+    // textContent
+    
+    var box = document.getElementById('box');
+    // 都会把标签过滤
+    // 前后的空白和一些换行去掉
+    console.log(box.innerText);
+    // 原封不动的把内容输出
+    console.log(box.textContent);
+
+     var box = document.getElementById('box');
+    // // 自有的属性
+    // console.log(box.id);
+    // // 自定义属性  -- 不能使用下面的方式获取到box元素对应的div标签的的自定义属性
+    // console.log(box.age);
+    // console.log(box.personId);
+
+    // 获取自定义属性的值 getAttribute()
+    // console.log(box.getAttribute('age'));
+    // console.log(box.getAttribute('personId'));
+
+    // 设置自定义属性
+    // box.setAttribute('sex', 'male');
+    // box.setAttribute('class', 'test');
+
+    // 移除属性 
+    // box.removeAttribute('age');
+    // box.removeAttribute('id');
+
+
+//     三大家族
+//    1 对比其他的top等方法类似
+//   偏移offsetWidth: width + padding + border
+//   卷曲scrollWidth: width + padding 不包含border 内部内容的大小
+//   可视clientWidth: width + padding 不包含border
+//    2 
+//   console.log(box.offsetParent); // 获取box的父定位元素
+//   console.log(box.offsetLeft);   // 获取box到父定位元素的左边距离
+//   console.log(box.offsetTop);    // 获取box到父定位元素上边的距离
+//   console.log(box.offsetWidth);  // 获取box的宽度边框以内
+//   console.log(box.offsetHeight); // 获取box的高度边框以内
+    </script>
+</body>
+</html>

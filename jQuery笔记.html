@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            fadeIn()          // 淡入
+            fadeOut()         // 淡出
+            slideUp()         // 向上滑动
+            slideDown()       // 向下滑动
+            toggle()          // 开关，触发器
+            next();         // 下一个
+            nextAll();      // 后面所有的
+            prev();         // 前一个
+            prevAll();      // 前面所有的
+            siblings();     // 除自己以外的所有兄弟元素                             
+            hide(1000,function () {})       // 前一个是1000毫秒，后一个是要给方法
+            show(1000,function () {})
+            stop();         // 停止动画，放在show，hide前面
+            $("#dv").prepend(aObj);     // 把元素插入到某个元素的前面
+            $("#dv").after(aObj);       // 把元素添加到当前元素的后面（兄弟元素来添加）
+            $("#dv").before(aObj);      // 把元素添加到当前元素的前面（兄弟元素来添加）
+            "+index+"            // 拼接字符串
+            $("#dv").html("")    // 清空元素中的内容  
+            $("#dv").empty();    // 清空元素中的内容    
+            $("#dv").remove();   // 干掉自己
+            $("#btn2").click(function () {
+                var spanObj=$("#dv>span").clone();         //克隆,复制了这个元素
+                spanObj.css("fontSize","50px");
+                $("#dv2").append(spanObj);
+            });
+
+            $("#uu>li:eq(4)")      // 获取ul中索引为4的li标签元素
+            $("#uu>li:gt(4)")      // 大于4的所有的li标签元素
+            $("#uu>li:lt(4)")      // 小于4的所有的li标签元素
+
+            prop();                // 可以真正的获取元素是否选中的状态
+            $(function () {
+                $("#btn").click(function () {
+                    var flag=$("#ck").prop("checked");
+                    if(flag){
+                        $("#ck").prop("checked",false);
+                    }else{
+                        $("#ck").prop("checked",true);
+                    }
+                })
+            })
+            // 点击按钮让复选框选中，再点不选中
+
+            attr();                
+            // 获取的是自定义属性
+            // attr()可以写两个参数，1，参数，属性 2，属性值
+            // attr()只写一个参数，获取该元素的这个属性的值
+            // 自定义属性
+            $(function () {
+                $("#btn").click(function () {
+                    var aObj = $("<a></a>");
+                    aObj.attr("title","传智播客");
+                    aObj.attr("href","http://www.itheima.com");
+                    aObj.text("传智播客");
+                    $("#dv").append("aObj");
+                })
+            })
+            toggleClass("cls");            //切换类样式
+            addClass("类样式名字");         // 添加一个类样式
+            removeClass("类样式名字");      // 移除类样式,移除的是当前元素中所有的类样式
+            hasClass();                    // 判断当前元素是否应用了某个类样式
+            $("#dv").html("<p>这是一个p标签</p>");           // 动态创建元素
+            // jQuery中创建元素的方式：1，$("标签的代码") 2，对象.html("标签的代码")
+            $("#dv").append(pObj);       
+            pObj.appendTo($("#dv"));      // 把pObj对象主动的加到div中 
+            html()    // 设置标签中间显示其他标签及内容,类似于innerHTML
+            text()    // 设置标签中间显示的文本内容,类似于innerText
+            val()     // 设置input标签中value的值,类似于value
+            css()     // 设置元素的样式,类似于style
+            bind()    // 第一个参数是事件名字,第二个参数是事件处理函数-匿名函数,为元素同时绑定多个事件
+            //    delegate--->绑定事件
+            delegate()
+            //  参数:父级元素.delegate("子级元素","事件类型",事件处理函数)
+            //  参数:3个
+            //  1.要绑定事件的元素---p
+            //  2.要绑定的事件的名字---click
+            //  3.绑定事件的处理函数---匿名函数
+            $("#dv").undelegate("p","click");   //解绑
+            //触发事件--3三种方式
+            //$("#btn1").click();
+            //trigget()方法中需要写上触发事件的名字
+            //$("#btn1").trigger("click");
+            on()
+            //     on方法： 两个参数:1事件的名字,2事件处理函数
+            //     on方法:三个参数: 1,事件的名字, 2.要绑定事件的元素--p,3事件处理函数
+            //     on是父级元素调用,目的:为子级元素去绑定事件
+            off()
+            // $("#btn").off("click")   on的解绑事件，移除父级元素和子级元素的所有的事件
+            bind()
+            //  绑定多个事件
+            //  参数:{"事件的类型":事件处理函数,....}
+            $("#btn").bind({"click":function(){},"mouseover":function(){}})
+            unbind()
+            // $("#btn").unbind("click")解绑
+            
+            // 触发事件
+            $(function () {
+            $("#btn").click(function () {
+                //触发文本框的获取焦点的事件
+                //$("#txt").focus();
+                //$("#txt").trigger("focus");   trigger:引发,触发
+                $("#txt").triggerHandler("focus");
+                $("#sp").text("文本框获取到焦点了");
+                //第一种触发事件的方式和第二种触发事件的方式是相同的,都会触发浏览器默认的事件(光标在文本框中闪烁)
+                //第三种触发事件的方式不会触发浏览器的默认事件
+            });
+        });
+
+                //event.delegateTarget----->div--->谁代替元素绑定的事件--div
+                //event.currentTarget----->input--->真正是谁绑定的事件
+                //event.target---->input----触发的事件
+            
+            //事件冒泡:元素中有元素,这些元素都有相同的事件,一旦最里面的元素的事件触发了,
+            //外面的所有的元素的相同的事件都会被触发
+            //元素A中有一个元素B,A和B都有点击事件,B点击事件触发,A点击事件自动触发
+            //取消事件冒泡
+            //jQuery中  return false
+
+            $(function () {
+                $(document).keydown(function (e) {
+                    var keyCode=e.keyCode;// 键盘按下后的键对应的键值
+                    switch(keyCode){
+                        case 65:$("#dv").css("background","red")
+                    }
+                })
+            })
+
+            $("#dv").html("<p></p>")
+
+             css()
+             css("属性","属性值");
+             css("属性","属性值").css("属性","属性值");
+             css({"属性":"属性值","属性":"属性值"});
+             addClass()      // 添加类样式不用加点
+             addClass("类样式名字");添加一个类样式
+             addClass("类样式名字1 类样式名字2"); // 中间是空格
+             removeClass()
+             removeClass("类样式名字");移除类样式
+             removeClass();移除的是当前元素中所有的类样式
+             hasClass();判断当前元素是否应用了某个类样式
+             toggleClass();切换元素的类样式的
+            
+
+            // DOM中顶级对象：document----页面中的顶级对象
+            // document点出来的是DOM中的属性和方法
+            // BOM中的顶级对象：window----浏览器中的顶级对象
+            // window点出来的是浏览器中的属性和方法
+            // jQuery的顶级对象：jQuery或者$
+            // $点出来的是jQuery中的方法
+
+            // DOM对象和jQuery对象可以互转
+            // DOM对象 转 jQuery对象：$(DOM的对象)--->jQuery对象
+            // jQuery对象--->DOM对象：1,$("btn")[0]--->DOM对象 
+            //                       2,$("#btn").get(0)--->DOM对象
+
+            // .html()方法，设置标签中间显示其他标签及内容，类似于innerHTML
+            // .text()方法，设置标签中间显示的文本内容，类似于innerText
+            // .val()方法，设置input标签中value的值，类似于value
+            // .css()方法，设置元素的样式，类似于style
+
+            // $("#dv p")  div中所有的p元素
+            // $("#dv>p")  div中直接的子元素
+            // $("#dv+p")  div后面的第一个p标签元素
+            // $("#dv~p")  div后面所有的兄弟元素p标签元素
+
+            .end() // 修复断链
+
+            // 动态创建元素
+            // $(function () {
+            //     $("#btn").click(function () {
+            //         var abc = $("<a href='http://www.baidu.com'>百度</a>");
+            //         $("#dv").append("abc");
+            //     })
+            // })
+
+            var str = 'heima@itcast.cn';
+            var reg = /(\w+)[@]((\w+)[.](\w+))/;
+            var obj = reg.exec(str);
+            console.log(obj);
+
+            
+            // jsonp实现原理
+            // 1，主要是利用了script标签的天然的跨域特性来发送请求
+            // 2，它的实现方式：在发送请求的时候传递一个函数名称给后台，后台返回数据的时候回返回
+            // 这个函数的调用形式，并且在（）中拼接参数
+            // 3，ajax和jsonp的本质不一样，ajax的核心是通过XMLHttpRequest来发送请求，而jsonp
+            // 是通过script标签来实现请求的发送
+
+
+    </script>
+    
+</body>
+</html>
